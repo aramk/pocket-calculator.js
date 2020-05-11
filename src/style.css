@@ -1,0 +1,19 @@
+.pocket-calculator button {
+  background: none;
+  width: 40px;
+  margin: 0;
+  padding: 4px;
+  display: inline-block;
+}
+
+.pocket-calculator button:not(:last-child) {
+  margin-right: 4px;
+}
+
+.pocket-calculator button[name="equal"] {
+  width: 88px;
+}
+
+.pocket-calculator-row {
+  margin-bottom: 4px;
+}

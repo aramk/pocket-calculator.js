@@ -1,0 +1,36 @@
+{
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-undef": "warn",
+    "no-console": "off",
+    "no-unused-vars": "warn",
+    "no-irregular-whitespace": "off",
+    "quotes": [
+      "warn",
+      "single",
+      { "avoidEscape": true , "allowTemplateLiterals": true }
+    ],
+    "max-len": [
+      "error",
+      120
+    ],
+    "comma-dangle": [
+      "error",
+      "only-multiline"
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "globals": {
+    "expect": true,
+    "readJsonFile": true,
+    "readJsonFixture": true
+  }
+}
