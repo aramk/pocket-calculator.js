@@ -1,9 +1,14 @@
+.pocket-calculator {
+  display: inline-block;
+}
+
 .pocket-calculator button {
   background: none;
   width: 40px;
   margin: 0;
   padding: 4px;
   display: inline-block;
+  outline: none;
 }
 
 .pocket-calculator button:not(:last-child) {
@@ -16,4 +21,20 @@
 
 .pocket-calculator-row {
   margin-bottom: 4px;
+}
+
+.pocket-calculator-input {
+  width: 100%;
+  color: black;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  padding: 4px;
+  text-align: right;
+  pointer-events: none;
+  user-select: none;
+  outline: none;
+}
+
+.pocket-calculator-active-mode {
+  box-shadow: 0px 0px 0px 2px rgb(0, 115, 255) inset;
 }

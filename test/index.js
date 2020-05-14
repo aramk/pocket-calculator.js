@@ -4,7 +4,6 @@ ready(() => {
   const calculator = new PocketCalculator({
     element: document.getElementById('calculator'),
   });
-  debugger
   
   calculator.render();  
 });
