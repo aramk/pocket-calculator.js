@@ -33,6 +33,9 @@
     "style-loader": "^1.2.1",
     "underscore": "^1.10.2"
   },
+  "engines": {
+    "node": ">=8.9.4"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/aramk/pocket-calculator.js/issues"
