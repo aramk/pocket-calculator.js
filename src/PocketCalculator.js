@@ -18,6 +18,7 @@ class PocketCalculator {
     this.element = element;
     this.input = null;
     this.mode = null;
+    this.lastCharWasMode = false;
     this.expr = '';
     this.calculated = false;
   }
@@ -72,12 +73,13 @@ class PocketCalculator {
 
   _addNumber(number) {
     const {input} = this;
-    if (input.value === DEFAULT_VALUE || this.mode || this.calculated) {
+    if (input.value === DEFAULT_VALUE || this.lastCharWasMode || this.calculated) {
       input.value = number;
       this.calculated = false;
     } else {
       input.value += number;
     }
+    this.lastCharWasMode = false;
   }
 
   _enterMode(mode) {
@@ -91,6 +93,7 @@ class PocketCalculator {
 
   _setMode(mode) {
     this.mode = mode;
+    this.lastCharWasMode = mode != null;
     for (const otherMode of MODES) {
       const {classList} = this.element.querySelector(`button[name="${otherMode}"]`);
       if (otherMode === mode) {
