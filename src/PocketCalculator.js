@@ -11,23 +11,32 @@ const INVALID_KEYS = ['e'];
 
 class PocketCalculator {
 
-  constructor({element}) {
+  constructor({element, input = null}) {
     if (!(element instanceof HTMLElement)) {
       throw new Error('Invalid element');
     }
     this.element = element;
-    this.input = null;
+    this.input = input;
     this.mode = null;
     this.lastCharWasMode = false;
     this.expr = '';
     this.calculated = false;
+    this.period = false;
   }
 
   render() {
     const {element} = this;
     element.innerHTML = _.template(template)();
-    const input = this.input = element.querySelector('.pocket-calculator-input');
-    input.value = '0';
+    const templateInput = element.querySelector('.pocket-calculator-input')
+    if (this.input == null) {
+      this.input = templateInput;
+    } else {
+      templateInput.style.display = 'none';
+    }
+    const input = this.input;
+    if (!input.value) {
+      input.value = '0';
+    }
     input.addEventListener('keydown', event => {
       const {key} = event;
       if (RE_NUMBER.test(key) && (input.value === DEFAULT_VALUE || this.mode)) {
@@ -56,7 +65,7 @@ class PocketCalculator {
           input.value = (input.value === newValue ? '-' : '') + newValue;
         }
       } else if (name === 'period') {
-        input.value += '.';
+        this.period = true;
       } else if (MODES.has(name)) {
         this._enterMode(name);
       } else if (name === 'c') {
@@ -73,11 +82,16 @@ class PocketCalculator {
 
   _addNumber(number) {
     const {input} = this;
+    let newValue = number;
+    if (this.period) {
+      newValue = '.' + newValue;
+      this.period = false;
+    }
     if (input.value === DEFAULT_VALUE || this.lastCharWasMode || this.calculated) {
-      input.value = number;
+      input.value = newValue;
       this.calculated = false;
     } else {
-      input.value += number;
+      input.value += newValue;
     }
     this.lastCharWasMode = false;
   }
