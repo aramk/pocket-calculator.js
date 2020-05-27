@@ -63,6 +63,7 @@ class PocketCalculator {
         if (input.value !== DEFAULT_VALUE) {
           const newValue = input.value.replace(RE_NEGATIVE, '');
           input.value = (input.value === newValue ? '-' : '') + newValue;
+          this._triggerChange();
         }
       } else if (name === 'period') {
         this.period = true;
@@ -72,8 +73,10 @@ class PocketCalculator {
         input.value = DEFAULT_VALUE;
         this.expr = '';
         this._setMode(null);
+        this._triggerChange();
       } else if (name === 'percentage') {
         input.value = this._calcExpr(input.value + '/100').toString();
+        this._triggerChange();
       } else if (name === 'equal') {
         this._calc();
       }
@@ -135,6 +138,7 @@ class PocketCalculator {
         this.input.value = newValue.toString();
         this._setMode(null);
         this.expr = '';
+        this._triggerChange();
       } catch (err) {
         console.error(err);
         alert('An error occurred!');
@@ -146,6 +150,10 @@ class PocketCalculator {
 
   _calcExpr(expr) {
     return (new Function(`return (${expr})`))();
+  }
+
+  _triggerChange() {
+    this.input.dispatchEvent(new Event('change'));
   }
 
 }
