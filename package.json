@@ -28,7 +28,7 @@
   "dependencies": {
     "babel-core": "^6.24.1",
     "css-loader": "^3.5.3",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.7.7",
     "raw-loader": "^4.0.1",
     "style-loader": "^1.2.1",
     "underscore": "^1.10.2"
